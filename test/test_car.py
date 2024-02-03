@@ -1,11 +1,9 @@
 import unittest
 from datetime import datetime
+from carriganTires import CarriganTires
+from octoprimeTires import OctoprimeTires
 
-from engine.model.calliope import Calliope
-from engine.model.glissade import Glissade
-from engine.model.palindrome import Palindrome
-from engine.model.rorschach import Rorschach
-from engine.model.thovex import Thovex
+
 from carFactory import CarFactory
 
 
@@ -199,6 +197,30 @@ class TestThovex(unittest.TestCase):
 
         car = self.carFactory.create_thovex(last_service_date, last_service_date, current_mileage, last_service_mileage)
         self.assertFalse(car.needs_service())
+
+
+class TestCarriganTires(unittest.TestCase):
+    def test_needs_service_true(self):
+        tire_wear = [0.1, 0.3, 0.2, 0.9]
+        tires = CarriganTires(tire_wear)
+        self.assertTrue(tires.needs_service())
+
+    def test_needs_service_false(self):
+        tire_wear = [0.1, 0.2, 0.4, 0.2]
+        tires = CarriganTires(tire_wear)
+        self.assertFalse(tires.needs_service())
+
+
+class TestOctoprimeTires(unittest.TestCase):
+    def test_needs_service_true(self):
+        tire_wear = [0.8, 0.8, 0.8, 0.7]
+        tires = OctoprimeTires(tire_wear)
+        self.assertTrue(tires.needs_service())
+
+    def test_needs_service_false(self):
+        tire_wear = [0.1, 0.2, 0.4, 0.2]
+        tires = OctoprimeTires(tire_wear)
+        self.assertFalse(tires.needs_service())
 
 
 if __name__ == '__main__':

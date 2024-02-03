@@ -1,6 +1,6 @@
 from tires import Tires
 
-class CarriganTire(Tires):
+class CarriganTires(Tires):
     # Tire has  wear sensors produce an array of four numbers between 0 and 1 inclusive, representing how worn each of the tires are.
     def __init__(self, wear_sensors):
         self.wear_sensors = wear_sensors
